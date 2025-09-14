@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do Widget</title>
+  <style>
+@font-face {
+font-family: 'BabyDoll';
+src: url(https://dl.dropbox.com/s/9km22ye44mczizy/BabyDoll.ttf);
+}
+    body {font-family: 'BabyDoll'; margin: 20px;color: #000000; background-image: url(https://i.pinimg.com/736x/0c/4d/58/0c4d58730d62331845041e683074ff54.jpg); background-size: cover; }
+    #task-list { list-style: none; padding: 0; }
+    li { display: flex; align-items: center; margin: 5px 0; }
+    input[type="checkbox"] { margin-right: 10px; }
+    #progress-bar-container {
+      width: 100%;
+      background: #ffffff;
+      border-radius: 10px;
+      margin-top: 20px;
+      height: 20px;
+      overflow: hidden;
+    }
+    #progress-bar {
+      height: 100%;
+      width: 0;
+      background: #f4c0e1;
+      transition: width 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+ <h2>To-Do List <img src="https://64.media.tumblr.com/59708a9ca662d4d2f92f719a8e1f8e4f/ca492d701ebc03f0-11/s75x75_c1/8cbd8fb53d0cb36bdca6c07fd4a6199b44af4c43.gifv"></h2>
+  <input id="task-input" placeholder="Add a task..." />
+  <button id="add-btn">Add</button>
+  <ul id="task-list"></ul>
+  <div id="progress-bar-container">
+    <div id="progress-bar"></div>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>
