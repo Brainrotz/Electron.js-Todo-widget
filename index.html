@@ -19,19 +19,60 @@ src: url(https://dl.dropbox.com/s/9km22ye44mczizy/BabyDoll.ttf);
       height: 20px;
       overflow: hidden;
     }
+   
+body {
+  -webkit-app-region: drag;
+  user-select: none; 
+}
+
+
+button, input, textarea, #task-list {
+  -webkit-app-region: no-drag;
+  user-select: text; 
+}
+
     #progress-bar {
       height: 100%;
       width: 0;
       background: #f4c0e1;
       transition: width 0.3s ease;
     }
+    #task-list {
+  list-style: none;   
+  padding: 0;
+  margin: 10px 0;
+}
+
+#task-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.7); 
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+#task-list span {
+  flex-grow: 1; 
+  margin-left: 8px;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 8px;
+}
   </style>
 </head>
 <body>
  <h2>To-Do List <img src="https://64.media.tumblr.com/59708a9ca662d4d2f92f719a8e1f8e4f/ca492d701ebc03f0-11/s75x75_c1/8cbd8fb53d0cb36bdca6c07fd4a6199b44af4c43.gifv"></h2>
   <input id="task-input" placeholder="Add a task..." />
   <button id="add-btn">Add</button>
-  <li id="task-list"></li>
+  <ul id="task-list"></ul>
   <div id="progress-bar-container">
     <div id="progress-bar"></div>
   </div>

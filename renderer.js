@@ -44,18 +44,18 @@ function renderTasks() {
     li.innerHTML = `
       <input type="checkbox" ${task.done ? "checked" : ""}>
       <span style="${task.done ? "text-decoration: line-through;" : ""}">${task.text}</span>
-      <button>❌</button>
+      <button class="delete-btn">X</button>
     `;
-    const checkbox = li.querySelector("input");
-    const deleteBtn = li.querySelector("button");
 
-    checkbox.addEventListener("change", () => toggleTask(i));
-    deleteBtn.addEventListener("click", () => deleteTask(i));
+    // Event listeners
+    li.querySelector("input").addEventListener("change", () => toggleTask(i));
+    li.querySelector(".delete-btn").addEventListener("click", () => deleteTask(i));
 
     taskList.appendChild(li);
   });
   updateProgress();
 }
+
 
 function updateProgress() {
   const doneCount = tasks.filter(t => t.done).length;
