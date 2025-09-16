@@ -4,13 +4,18 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dist": "electron-builder"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "build": {
+    "appId": "com.yourname.todowidget",
+    "productName": "To-Do Widget",
+    "win": {
+      "target": "nsis",
+      "icon": "icon.ico"
+    }
+  },
   "devDependencies": {
-    "electron": "^38.1.0"
+    "electron": "^38.1.0",
+    "electron-builder": "^24.13.3"
   }
 }
