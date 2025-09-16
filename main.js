@@ -16,16 +16,18 @@ function saveTasks(tasks) {
   fs.writeFileSync(DATA_FILE, JSON.stringify(tasks, null, 2));
 }
 
+let win; // store globally
+
 function createWindow() {
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 400,
     height: 500,
     frame: false,
     alwaysOnTop: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
-       contextIsolation: true, 
-       nodeIntegration: false,  
+      contextIsolation: true,
+      nodeIntegration: false,
     }
   });
 
@@ -35,5 +37,8 @@ function createWindow() {
 // IPC handlers
 ipcMain.handle('load-tasks', () => loadTasks());
 ipcMain.on('save-tasks', (_, tasks) => saveTasks(tasks));
+ipcMain.on('minimize-window', () => {
+  if (win) win.minimize();
+});
 
 app.whenReady().then(createWindow);

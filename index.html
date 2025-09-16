@@ -4,41 +4,78 @@
   <title>To-Do Widget</title>
   <style>
 @font-face {
-font-family: 'BabyDoll';
-src: url(https://dl.dropbox.com/s/9km22ye44mczizy/BabyDoll.ttf);
+  font-family: 'BabyDoll';
+  src: url(https://dl.dropbox.com/s/9km22ye44mczizy/BabyDoll.ttf);
 }
-    body {font-family: 'BabyDoll'; margin: 20px;color: #000000; background-image: url(https://i.pinimg.com/736x/0c/4d/58/0c4d58730d62331845041e683074ff54.jpg); background-size: cover; }
-    #task-list { list-style: none; padding: 0; }
-    li { display: flex; align-items: center; margin: 5px 0; }
-    input[type="checkbox"] { margin-right: 10px; }
-    #progress-bar-container {
-      width: 100%;
-      background: #ffffff;
-      border-radius: 10px;
-      margin-top: 20px;
-      height: 20px;
-      overflow: hidden;
-    }
-   
 body {
+  font-family: 'BabyDoll';
+  margin: 20px;
+  color: #000000;
+  background-image: url(https://i.pinimg.com/736x/0c/4d/58/0c4d58730d62331845041e683074ff54.jpg);
+  background-size: cover;
   -webkit-app-region: drag;
-  user-select: none; 
+  user-select: none;
 }
 
-
+/* disable drag for inputs/buttons */
 button, input, textarea, #task-list {
   -webkit-app-region: no-drag;
-  user-select: text; 
+  user-select: text;
 }
 
-    #progress-bar {
-      height: 100%;
-      width: 0;
-      background: #f4c0e1;
-      transition: width 0.3s ease;
-    }
-    #task-list {
-  list-style: none;   
+#titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  -webkit-app-region: drag;
+  padding: 5px 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#titlebar .title-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#titlebar img {
+  width: 20px;
+  height: 20px;
+}
+
+.window-btn {
+  -webkit-app-region: no-drag;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.window-btn:hover {
+  background: rgba(0,0,0,0.1);
+  border-radius: 4px;
+}
+
+#task-input {
+  width: 70%;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+#add-btn {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  background: #f4c0e1;
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+#task-list {
+  list-style: none;
   padding: 0;
   margin: 10px 0;
 }
@@ -47,14 +84,14 @@ button, input, textarea, #task-list {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.7); 
+  background: rgba(255, 255, 255, 0.7);
   margin-bottom: 8px;
   padding: 6px 10px;
   border-radius: 8px;
 }
 
 #task-list span {
-  flex-grow: 1; 
+  flex-grow: 1;
   margin-left: 8px;
 }
 
@@ -66,16 +103,42 @@ button, input, textarea, #task-list {
   cursor: pointer;
   margin-left: 8px;
 }
+
+#progress-bar-container {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 10px;
+  margin-top: 20px;
+  height: 20px;
+  overflow: hidden;
+}
+
+#progress-bar {
+  height: 100%;
+  width: 0;
+  background: #f4c0e1;
+  transition: width 0.3s ease;
+}
   </style>
 </head>
 <body>
- <h2>To-Do List <img src="https://64.media.tumblr.com/59708a9ca662d4d2f92f719a8e1f8e4f/ca492d701ebc03f0-11/s75x75_c1/8cbd8fb53d0cb36bdca6c07fd4a6199b44af4c43.gifv"></h2>
+  <div id="titlebar">
+    <div class="title-left">
+      <span>To-Do List</span>
+      <img src="https://64.media.tumblr.com/59708a9ca662d4d2f92f719a8e1f8e4f/ca492d701ebc03f0-11/s75x75_c1/8cbd8fb53d0cb36bdca6c07fd4a6199b44af4c43.gifv">
+    </div>
+    <button id="min-btn" class="window-btn">—</button>
+  </div>
+
   <input id="task-input" placeholder="Add a task..." />
   <button id="add-btn">Add</button>
+
   <ul id="task-list"></ul>
+
   <div id="progress-bar-container">
     <div id="progress-bar"></div>
   </div>
+
   <script src="renderer.js"></script>
 </body>
 </html>

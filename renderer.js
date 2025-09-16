@@ -2,6 +2,7 @@ const taskInput = document.getElementById("task-input");
 const addBtn = document.getElementById("add-btn");
 const taskList = document.getElementById("task-list");
 const progressBar = document.getElementById("progress-bar");
+const minBtn = document.getElementById("min-btn");
 
 let tasks = [];
 
@@ -44,10 +45,9 @@ function renderTasks() {
     li.innerHTML = `
       <input type="checkbox" ${task.done ? "checked" : ""}>
       <span style="${task.done ? "text-decoration: line-through;" : ""}">${task.text}</span>
-      <button class="delete-btn">X</button>
+      <button class="delete-btn">&times;</button>
     `;
 
-    // Event listeners
     li.querySelector("input").addEventListener("change", () => toggleTask(i));
     li.querySelector(".delete-btn").addEventListener("click", () => deleteTask(i));
 
@@ -55,7 +55,6 @@ function renderTasks() {
   });
   updateProgress();
 }
-
 
 function updateProgress() {
   const doneCount = tasks.filter(t => t.done).length;
@@ -74,3 +73,10 @@ addBtn.addEventListener("click", addTask);
 taskInput.addEventListener("keydown", e => {
   if (e.key === "Enter") addTask();
 });
+
+if (minBtn) {
+  minBtn.addEventListener("click", () => {
+    if (window.api) window.api.minimize();
+  });
+}
+
